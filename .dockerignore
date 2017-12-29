@@ -1,0 +1,7 @@
++.git
++*.md
++.idea
++tmp/*
++log/*
++!/log/.keep
++!/tmp/.keep

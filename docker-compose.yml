@@ -1,0 +1,11 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7.19
+    environment:
+      - MYSQL_ROOT_PASSWORD=chiselmetimbers
+    volumes:
+      - "./db/initdb.d:/docker-entrypoint-initdb.d"
+      - "./db/conf.d:/etc/mysql/conf.d"
+    ports:
+      - "3306:3306"

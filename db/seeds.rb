@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Role.where(id: 1).first_or_create(name: 'admin')
+Role.where(id: 2).first_or_create(name: 'student')
