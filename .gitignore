@@ -10,6 +10,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/data
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -22,4 +23,4 @@
 
 .byebug_history
 
-.env.development
+.env*
