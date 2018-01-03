@@ -9,8 +9,38 @@
   </head>
 
   <body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to 'Polytech CreditCracker', root_path, class: "navbar-brand" %>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Back', :back %></li>
+          <li>
+          <% unless controller_name == "sessions" %>
+            <% if user_signed_in? %>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <% else %>
+              <%= link_to('Login', new_user_session_path)  %>
+            <% end %>
+          <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "polytech_logo.jpg", style: "padding: 16px" %>
+      </div>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+  </div>
   </body>
+
 </html>
