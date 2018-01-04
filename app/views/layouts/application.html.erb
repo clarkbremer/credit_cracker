@@ -12,6 +12,11 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <%= image_tag "polytech_avatar.png", style: "padding: 16px" %>
+        </a>
+      </div>
+      <div class="navbar-header">
         <%= link_to 'Polytech Credit Cracker', root_path, class: "navbar-brand" %>
       </div>
       <div>
@@ -32,11 +37,6 @@
     </div>
   </nav>
   <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <%= image_tag "polytech_logo.jpg", style: "padding: 16px" %>
-      </div>
-    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

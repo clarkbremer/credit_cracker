@@ -17,6 +17,7 @@
     background-image: none;
 }
 .navbar-default {
+  /*background-color: #FFFFFF;*/
   background-color: #00718f;
   border-color: #428bca;
 }

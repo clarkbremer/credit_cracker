@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Field:</strong>
+  <%= @standard.field %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @standard.code %>
+</p>
+
+<p>
+  <strong>Benchmark:</strong>
+  <%= @standard.benchmark %>
+</p>
+
+<p>
+  <strong>Example:</strong>
+  <%= @standard.example %>
+</p>
+
+<%= link_to 'Edit', edit_standard_path(@standard) %> |
+<%= link_to 'Back', standards_path %>
