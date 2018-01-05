@@ -30,14 +30,18 @@
 
 <br>
 
-<%= link_to 'New Standard', new_standard_path %>
+<%= link_to 'Add New Standard', new_standard_path, class: "glyphicon glyphicon-plus" %>
 
 <script type="text/javascript">
 $(document).ready(function(){
   $('.dtable').DataTable({
     "pageLength": 15,
     "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
-    "order": [[ 1, "asc" ]],
-    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [ 2,3,4 ] }]  });
+    "order": [[ 0, "asc" ], [1, "asc"]],
+    "columnDefs": [
+      { "targets": [2,3,4], "orderable": false},
+      { "targets": [1], "orderData": [0,1]}
+    ]
+  });
 });
 </script>
