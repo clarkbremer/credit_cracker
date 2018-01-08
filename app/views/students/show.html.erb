@@ -15,5 +15,41 @@
   <%= @student.student_id %>
 </p>
 
+<p>
+  <strong>Badges:</strong>
+  <table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+    <thead>
+      <tr>
+        <th>Badge Name</th>
+        <th>Version</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @student.badges.each do |badge| %>
+        <tr>
+          <td><%= badge.name %></td>
+          <td><%= badge.version %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.dtable').DataTable({
+    "pageLength": 15,
+    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
+    "order": [ 0, "asc" ],
+    "columnDefs": [
+      { "targets": [1], "orderable": false}
+    ]
+  });
+});
+</script>

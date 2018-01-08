@@ -10,5 +10,48 @@
   <%= @badge.version %>
 </p>
 
+<p>
+  <strong>Standards:</strong>
+
+<table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Code</th>
+      <th>Benchmark</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @badge.standards.each do |standard| %>
+      <tr>
+        <td><%= standard.field %></td>
+        <td><%= standard.code %></td>
+        <td><%= standard.benchmark %></td>
+        <td><%= standard.example %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</p>
+
+<br>
+
+
 <%= link_to 'Edit', edit_badge_path(@badge) %> |
 <%= link_to 'Back', badges_path %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.dtable').DataTable({
+    "pageLength": 15,
+    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
+    "order": [[ 0, "asc" ], [1, "asc"]],
+    "columnDefs": [
+      { "targets": [2,3], "orderable": false},
+      { "targets": [1], "orderData": [0,1]}
+    ]
+  });
+});
+</script>
