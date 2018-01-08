@@ -2,11 +2,11 @@ require 'csv'
 
 class Standard < ApplicationRecord
 
-  def self.import_csv(filename, field)
+  def self.import_csv(filename, subject)
     header = []
     line = 0
 
-    File.foreach(Rails.root.join(filename)) do |csv_line|
+    File.foreach(Rails.root.join('data', filename)) do |csv_line|
       line += 1
       begin
         row = CSV.parse(csv_line).first
@@ -20,8 +20,7 @@ class Standard < ApplicationRecord
         next
       end
       row = Hash[header.zip(row)]
-      row[:example] = row.delete(:"for example")
-      standard = Standard.where(field: field, code: row[:code]).first_or_initialize
+      standard = Standard.where(subject: subject, code: row[:code]).first_or_initialize
       standard.update_attributes(row.slice(:code, :benchmark, :example))
     end
   end

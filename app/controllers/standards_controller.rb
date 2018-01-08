@@ -69,6 +69,6 @@ class StandardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def standard_params
-      params.require(:standard).permit(:field, :code, :benchmark, :example)
+      params.require(:standard).permit(:subject, :code, :benchmark, :example)
     end
 end
