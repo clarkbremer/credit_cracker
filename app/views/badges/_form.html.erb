@@ -21,7 +21,69 @@
     <%= form.number_field :version, id: :badge_version %>
   </div>
 
+  <div>
+    <table id='standards_form_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Subject</th>
+          <th>Code</th>
+          <th>Benchmark</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% Standard.all.each do |standard| %>
+          <tr>
+            <td><%= check_box_tag "badge[standard_ids][]", standard.id, @badge.standards.include?(standard) %></td>
+            <td><%= standard.subject %></td>
+            <td><%= standard.code %></td>
+            <td><%= standard.benchmark %></td>
+            <td><%= standard.example %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var table = $('#standards_form_table').DataTable({
+    stateSave: true,
+    "pageLength": 15,
+    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
+    "order": [[ 0, "asc" ], [1, "asc"], [2, "asc"]],
+    "columnDefs": [
+      { "targets": [3,4], "orderable": false}
+    ]
+  });
+});
+
+$('form').on('submit', function(e){
+   var $form = $(this);
+
+   // Iterate over all checkboxes in the table
+   table.$('input[type="checkbox"]').each(function(){
+      // If checkbox doesn't exist in DOM
+      if(!$.contains(document, this)){
+         // If checkbox is checked
+         if(this.checked){
+            // Create a hidden element
+            $form.append(
+               $('<input>')
+                  .attr('type', 'hidden')
+                  .attr('name', this.name)
+                  .val(this.value)
+            );
+         }
+      }
+   });
+});
+</script>

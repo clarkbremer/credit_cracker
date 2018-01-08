@@ -20,5 +20,5 @@
   <%= @standard.example %>
 </p>
 
-<%= link_to 'Edit', edit_standard_path(@standard) %> |
-<%= link_to 'Back', standards_path %>
+<%= link_to 'Edit', edit_standard_path(@standard), class: "btn btn-primary btn-xs" %>
+<%= link_to 'Destroy', @standard, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs"  %></td>

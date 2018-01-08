@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Badge:</strong>
   <%= @badge.name %>
 </p>
 
@@ -38,9 +38,8 @@
 
 <br>
 
-
-<%= link_to 'Edit', edit_badge_path(@badge) %> |
-<%= link_to 'Back', badges_path %>
+<%= link_to 'Edit', edit_badge_path(@badge), class: "btn btn-primary btn-xs" %>
+<%= link_to 'Destroy', @badge, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %>
 
 <script type="text/javascript">
 $(document).ready(function(){
