@@ -13,7 +13,7 @@
 <p>
   <strong>Standards:</strong>
 
-<table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+<table id= 'standards_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
   <thead>
     <tr>
       <th>Subject</th>
@@ -44,7 +44,8 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $('.dtable').DataTable({
+  $('#standards_show_table').DataTable({
+    stateSave: true,
     "pageLength": 15,
     "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
     "order": [[ 0, "asc" ], [1, "asc"]],

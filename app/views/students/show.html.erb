@@ -17,7 +17,7 @@
 
 <p>
   <strong>Badges:</strong>
-  <table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <table id='badge_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
     <thead>
       <tr>
         <th>Badge Name</th>
@@ -43,7 +43,8 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $('.dtable').DataTable({
+  $('#badge_show_table').DataTable({
+    stateSave: true,
     "pageLength": 15,
     "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
     "order": [ 0, "asc" ],
