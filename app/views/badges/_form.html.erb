@@ -56,41 +56,61 @@
 <script type="text/javascript">
 $(document).ready(function(){
   var table = $('#standards_form_table').DataTable({
-    // select: {
-    //   style: 'multi',
-    // },
+    select: {
+      style: 'multi',
+    },
     pageLength: 15,
     lengthMenu: [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
     order: [[ 0, "asc" ], [1, "asc"], [2, "asc"]],
     columnDefs: [
       { targets: [3,4], orderable: false},
+      // { targets: [0], visible: false}
     ]
   });
 
-  $('form').on('submit', function(e){
-     var $form = $(this);
-
-    // Iterate over all checkboxes in the table
-    table.$('input[type="checkbox"]').each(function(){
-       // If checkbox doesn't exist in DOM
-       if(!$.contains(document, this)){
-          // If checkbox is checked
-          if(this.checked){
-             // Create a hidden element
-             $form.append(
-                $('<input>')
-                   .attr('type', 'hidden')
-                   .attr('name', this.name)
-                   .val(this.value)
-             );
-          }
-       }
-    });
-
-    // table.rows( { selected: true } ).each(function(){
-    //   console.log
-    // });
+  table.rows().every( function () {
+    if(this.data()[0].includes('checked="checked"')){
+      this.select();
+    } else {
+      this.deselect();
+    }
   });
+
+
+  $('form').on('submit', function(e){
+
+    var ids = $.map(table.rows('.selected').data(), function (item) {
+        return item[0]
+    });
+    console.log(ids)
+    alert(table.rows('.selected').data().length + ' row(s) selected');
+
+
+  });
+
+    // var $form = $(this);
+
+
+
+
+    // // Iterate over all checkboxes in the table
+    // table.$('input[type="checkbox"]').each(function(){
+    //   // If checkbox doesn't exist in DOM
+    //  if(!$.contains(document, this)){
+    //     // If checkbox is checked
+    //     if(this.checked){
+    //        // Create a hidden element
+    //        $form.append(
+    //           $('<input>')
+    //            .attr('type', 'hidden')
+    //            .attr('name', this.name)
+    //            .val(this.value)
+    //       );
+    //     }
+    //   }
+    // });
+
+  // });
 
 });
 </script>
