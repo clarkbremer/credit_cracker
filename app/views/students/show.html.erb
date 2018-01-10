@@ -1,13 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @student.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @student.last_name %>
+  <h3>Badges Earned for  <%= @student.first_name %> <%= @student.last_name %>:</h3>
 </p>
 
 <p>
@@ -16,7 +10,6 @@
 </p>
 
 <p>
-  <strong>Badges:</strong>
   <table id='badge_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
     <thead>
       <tr>

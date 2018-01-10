@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Badge:</strong>
-  <%= @badge.name %>
+  <h2>Badge Name: <%= @badge.name %></h2>
 </p>
 
 <p>
@@ -13,27 +12,27 @@
 <p>
   <strong>Standards:</strong>
 
-<table id= 'standards_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Code</th>
-      <th>Benchmark</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @badge.standards.each do |standard| %>
+  <table id= 'standards_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+    <thead>
       <tr>
-        <td><%= standard.subject %></td>
-        <td><%= standard.code %></td>
-        <td><%= standard.benchmark %></td>
-        <td><%= standard.example %></td>
+        <th>Subject</th>
+        <th>Code</th>
+        <th>Benchmark</th>
+        <th>Example</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @badge.standards.each do |standard| %>
+        <tr>
+          <td><%= standard.subject %></td>
+          <td><%= standard.code %></td>
+          <td class='small'><%= standard.benchmark %></td>
+          <td class='small'><%= standard.example %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </p>
 
 <br>

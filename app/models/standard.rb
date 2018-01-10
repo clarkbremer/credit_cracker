@@ -1,6 +1,8 @@
 require 'csv'
 
 class Standard < ApplicationRecord
+  has_many :badge_standards
+  has_many :badges, through: :badge_standards
 
   def self.import_csv(filename, subject)
     header = []
