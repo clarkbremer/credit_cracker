@@ -10,6 +10,12 @@
 </p>
 
 <p>
+<%= link_to 'Edit this Badge', edit_badge_path(@badge), class: "btn btn-primary btn-xs" %>
+<%= link_to 'Create a new version of this Badge', new_version_badge_path(@badge), class: "btn btn-primary btn-xs" %>
+<%= link_to 'Delete this Badge', @badge, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %>
+</p>
+
+<p>
   <strong>Standards:</strong>
 
   <table id= 'standards_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
@@ -25,7 +31,7 @@
     <tbody>
       <% @badge.standards.each do |standard| %>
         <tr>
-          <td><%= standard.subject %></td>
+          <td><%= standard.subject.name %></td>
           <td><%= standard.code %></td>
           <td class='small'><%= standard.benchmark %></td>
           <td class='small'><%= standard.example %></td>
@@ -37,13 +43,13 @@
 
 <br>
 
-<%= link_to 'Edit', edit_badge_path(@badge), class: "btn btn-primary btn-xs" %>
-<%= link_to 'Destroy', @badge, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %>
+
 
 <script type="text/javascript">
 $(document).ready(function(){
   $('#standards_show_table').DataTable({
-    "paging":   false,
+    "paging": false,
+    "bInfo": false,
     "order": [[ 0, "asc" ], [1, "asc"]],
     "columnDefs": [
       { "targets": [2,3], "orderable": false},

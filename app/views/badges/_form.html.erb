@@ -16,13 +16,27 @@
     <%= form.text_field :name, id: :badge_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :version %>
-    <%= form.number_field :version, id: :badge_version %>
-  </div>
+  <p>
+    <strong>Version:</strong>
+    <%= @badge.version %>
+  </p>
 
-  <div>
-    <table id='standards_form_table' class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <% first = Subject.first.id %>
+  <% Subject.find_each do |subject| %>
+  <li class="nav-item">
+    <a class="nav-link <%= 'active' if subject.id == first %>" data-toggle="tab" href="#<%= "tab-#{subject.id}" %>"><%= subject.name %></a>
+  </li>
+  <% end %>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <% first = Subject.first.id %>
+  <% Subject.find_each.with_index do |subject, i| %>
+    <div class="tab-pane container <%= subject.id == first ? 'active' : 'fade' %>" id="<%= "tab-#{subject.id}" %>">
+    <table id='<%= "table_#{i}" %>' class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
       <thead>
         <tr>
           <th>Select</th>
@@ -34,10 +48,10 @@
       </thead>
 
       <tbody>
-        <% Standard.find_each do |standard| %>
+        <% subject.standards.each do |standard| %>
           <tr>
-            <td><%= check_box_tag "badge[standard_ids][]", standard.id, @badge.standards.include?(standard) %></td>
-            <td><%= standard.subject %></td>
+            <td><%= check_box_tag "badge[standard_ids][]", standard.id, @standard_ids.include?(standard.id) %></td>
+            <td><%= standard.subject.name %></td>
             <td><%= standard.code %></td>
             <td class="small"><%= standard.benchmark %></td>
             <td class="small"><%= standard.example %></td>
@@ -45,6 +59,11 @@
         <% end %>
       </tbody>
     </table>
+    </div>
+  <% end %>
+</div>
+
+  <div>
 
   </div>
 
@@ -54,8 +73,14 @@
 <% end %>
 
 <script type="text/javascript">
+var tables = [];
+
+<% Subject.find_each.with_index do |subject, i| %>
+
 $(document).ready(function(){
-  var table = $('#standards_form_table').DataTable({
+  tables[<%= i %>] = $('#<%= "table_#{i}" %>').DataTable({
+    paging: false,
+    bInfo: false,
     select: {
       style: 'multi',
     },
@@ -65,8 +90,8 @@ $(document).ready(function(){
     ]
   });
 
-  table.rows().every( function(rowIndex) {
-    var $checkbox = $(table.row(rowIndex).node()).find('td:first-child input[type="checkbox"]');
+  tables[<%= i %>].rows().every( function(rowIndex) {
+    var $checkbox = $(tables[<%= i %>].row(rowIndex).node()).find('td:first-child input[type="checkbox"]');
     if($checkbox.is(':checked')) {
       this.select();
     } else {
@@ -74,19 +99,22 @@ $(document).ready(function(){
     }
   });
 
-  table.on( 'select', function ( e, dt, type, indexes ) {
+  tables[<%= i %>].on( 'select', function ( e, dt, type, indexes ) {
    if ( type === 'row' ) {
-      var $checkbox = $(table.row( indexes[0] ).node()).find('td:first-child input[type="checkbox"]');
+      var $checkbox = $(tables[<%= i %>].row( indexes[0] ).node()).find('td:first-child input[type="checkbox"]');
       $checkbox.prop('checked', true);
     }
   });
 
-  table.on( 'deselect', function ( e, dt, type, indexes ) {
+  tables[<%= i %>].on( 'deselect', function ( e, dt, type, indexes ) {
    if ( type === 'row' ) {
-      var $checkbox = $(table.row( indexes[0] ).node()).find('td:first-child input[type="checkbox"]');
+      var $checkbox = $(tables[<%= i %>].row( indexes[0] ).node()).find('td:first-child input[type="checkbox"]');
       $checkbox.prop('checked', false);
     }
   });
 
 });
+
+<% end %>
+
 </script>

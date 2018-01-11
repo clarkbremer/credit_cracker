@@ -15,10 +15,23 @@ class BadgesController < ApplicationController
   # GET /badges/new
   def new
     @badge = Badge.new
+    @badge.version = 1
+    @standard_ids = []
+  end
+
+  # GET /badges/1/new_version
+  def new_version
+    Rails.logger.info("NEW VERSION")
+    existing_badge = Badge.find(params[:id])
+    @badge = existing_badge.clone
+    @standard_ids = existing_badge.standards.pluck(:id)
+    @badge.version = @badge.version + 1
+    render :new
   end
 
   # GET /badges/1/edit
   def edit
+    @standard_ids = @badge.standards.pluck(:id)
   end
 
   # POST /badges
