@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Standards</h1>
 
 <table id='standards_index_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
@@ -7,8 +5,8 @@
     <tr>
       <th>Subject</th>
       <th>Code</th>
+      <th>Standard</th>
       <th>Benchmark</th>
-      <th>Example</th>
       <th class="w-25"></th>
     </tr>
   </thead>
@@ -16,10 +14,10 @@
   <tbody>
     <% @standards.each do |standard| %>
       <tr>
-        <td><%= standard.subject %></td>
+        <td><%= standard.subject.name %></td>
         <td><%= standard.code %></td>
+        <td class='small'><%= standard.standard %></td>
         <td class='small'><%= standard.benchmark %></td>
-        <td class='small'><%= standard.example %></td>
         <td><%= link_to 'Show', standard, class: "btn btn-primary btn-xs" %></td>
       </tr>
     <% end %>

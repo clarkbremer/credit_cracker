@@ -26,7 +26,69 @@
     <%= form.number_field :student_id, id: :student_student_id %>
   </div>
 
+  <h2>Badges:</h2>
+
+  <div>
+    <table id='<%= "table_1" %>' class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Name</th>
+          <th>Version</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% Badge.find_each do |badge| %>
+          <tr>
+            <td><%= check_box_tag "student[badge_ids][]", badge.id, @badge_ids.include?(badge.id) %></td>
+            <td><%= badge.name %></td>
+            <td><%= badge.version %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  table = $('#table_1').DataTable({
+    select: {
+      style: 'multi',
+    },
+    order: [[1, "asc"], [2, "asc"]],
+  });
+
+  table.rows().every( function(rowIndex) {
+    var $checkbox = $(table.row(rowIndex).node()).find('td:first-child input[type="checkbox"]');
+    if($checkbox.is(':checked')) {
+      this.select();
+    } else {
+      this.deselect();
+    }
+  });
+
+  table.on( 'select', function ( e, dt, type, indexes ) {
+   if ( type === 'row' ) {
+      var $checkbox = $(table.row( indexes[0] ).node()).find('td:first-child input[type="checkbox"]');
+      $checkbox.prop('checked', true);
+    }
+  });
+
+  table.on( 'deselect', function ( e, dt, type, indexes ) {
+   if ( type === 'row' ) {
+      var $checkbox = $(table.row( indexes[0] ).node()).find('td:first-child input[type="checkbox"]');
+      $checkbox.prop('checked', false);
+    }
+  });
+
+});
+
+</script>
+

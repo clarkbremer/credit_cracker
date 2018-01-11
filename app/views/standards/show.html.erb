@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Subject:</strong>
-  <%= @standard.subject %>
+  <%= @standard.subject.name %>
 </p>
 
 <p>
@@ -11,14 +9,13 @@
 </p>
 
 <p>
+  <strong>Example:</strong>
+  <%= @standard.standard %>
+</p>
+
+<p>
   <strong>Benchmark:</strong>
   <%= @standard.benchmark %>
 </p>
 
-<p>
-  <strong>Example:</strong>
-  <%= @standard.example %>
-</p>
-
-<%= link_to 'Edit', edit_standard_path(@standard), class: "btn btn-primary btn-xs" %>
-<%= link_to 'Destroy', @standard, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs"  %></td>
+<%= link_to 'Delete', @standard, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning"  %></td>

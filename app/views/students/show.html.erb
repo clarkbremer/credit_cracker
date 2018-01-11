@@ -1,7 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <h3>Badges Earned for  <%= @student.first_name %> <%= @student.last_name %>:</h3>
+  <h2><%= @student.first_name %> <%= @student.last_name %>:</h2>
 </p>
 
 <p>
@@ -9,6 +7,12 @@
   <%= @student.student_id %>
 </p>
 
+<p>
+<%= link_to 'Edit Student', edit_student_path(@student), class: 'btn btn-primary' %>
+<%= link_to 'Delete', @student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %>
+</p>
+
+<h3>Badges Earned:</h3>
 <p>
   <table id='badge_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
     <thead>
@@ -31,8 +35,6 @@
 
 
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
 
 <script type="text/javascript">
 $(document).ready(function(){
