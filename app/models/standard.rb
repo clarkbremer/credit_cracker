@@ -1,7 +1,7 @@
 require 'csv'
 
 class Standard < ApplicationRecord
-  has_many :badge_standards
+  has_many :badge_standards, dependent: :destroy
   has_many :badges, through: :badge_standards
   belongs_to :subject
 
@@ -24,7 +24,7 @@ class Standard < ApplicationRecord
       end
       row = Hash[header.zip(row)]
       standard = Standard.where(subject: subject, code: row[:code]).first_or_initialize
-      standard.update_attributes(row.slice(:code, :benchmark, :example))
+      standard.update_attributes(row.slice(:code, :benchmark, :standard))
     end
   end
 

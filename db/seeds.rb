@@ -17,3 +17,5 @@ Subject.where(name: 'Math').first_or_create
 Subject.where(name: 'Science').first_or_create
 Subject.where(name: 'Chemistry').first_or_create
 Subject.where(name: 'Physics').first_or_create
+
+Subject.find_each {|subject| subject.import }

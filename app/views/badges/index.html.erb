@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Badges</h1>
+
+<p>
+  <%= link_to 'Create New Badge', new_badge_path, class: "btn btn-primary" %>
+</p>
 
 <table id='badge_index_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
   <thead>
@@ -24,15 +26,13 @@
 
 <br>
 
-<%= link_to 'New Badge', new_badge_path %>
 
 <script type="text/javascript">
 $(document).ready(function(){
   $('#badge_index_table').DataTable({
-    stateSave: true,
     "pageLength": 15,
     "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
-    "order": [[ 0, "asc" ]],
+    "order": [[ 0, "asc" ],[1, "asc"]],
     "columnDefs": [
       { "targets": [2], "orderable": false}
     ]

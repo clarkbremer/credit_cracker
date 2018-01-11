@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111154504) do
+ActiveRecord::Schema.define(version: 20180111210708) do
 
   create_table "badge_standards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "badge_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20180111154504) do
   create_table "standards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "code"
     t.text "benchmark"
-    t.text "example"
+    t.text "standard"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "subject_id"

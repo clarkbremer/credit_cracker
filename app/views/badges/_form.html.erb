@@ -19,6 +19,7 @@
   <p>
     <strong>Version:</strong>
     <%= @badge.version %>
+    <%= form.hidden_field :version %>
   </p>
 
 <!-- Nav tabs -->
@@ -42,8 +43,8 @@
           <th>Select</th>
           <th>Subject</th>
           <th>Code</th>
+          <th>Standard</th>
           <th>Benchmark</th>
-          <th>Example</th>
         </tr>
       </thead>
 
@@ -53,8 +54,8 @@
             <td><%= check_box_tag "badge[standard_ids][]", standard.id, @standard_ids.include?(standard.id) %></td>
             <td><%= standard.subject.name %></td>
             <td><%= standard.code %></td>
+            <td class="small"><%= standard.standard %></td>
             <td class="small"><%= standard.benchmark %></td>
-            <td class="small"><%= standard.example %></td>
           </tr>
         <% end %>
       </tbody>
@@ -68,7 +69,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit id: 'btn-submit' %>
+    <%= form.submit id: 'btn-submit', class: 'btn btn-primary' %>
   </div>
 <% end %>
 

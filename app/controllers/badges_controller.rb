@@ -23,7 +23,7 @@ class BadgesController < ApplicationController
   def new_version
     Rails.logger.info("NEW VERSION")
     existing_badge = Badge.find(params[:id])
-    @badge = existing_badge.clone
+    @badge = existing_badge.dup
     @standard_ids = existing_badge.standards.pluck(:id)
     @badge.version = @badge.version + 1
     render :new

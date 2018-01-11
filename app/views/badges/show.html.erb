@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <h2>Badge Name: <%= @badge.name %></h2>
 </p>
@@ -8,11 +6,13 @@
   <strong>Version:</strong>
   <%= @badge.version %>
 </p>
-
 <p>
-<%= link_to 'Edit this Badge', edit_badge_path(@badge), class: "btn btn-primary btn-xs" %>
-<%= link_to 'Create a new version of this Badge', new_version_badge_path(@badge), class: "btn btn-primary btn-xs" %>
-<%= link_to 'Delete this Badge', @badge, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %>
+  <%= pluralize(@badge.students.count, 'student has', 'students have') %> earned this badge.
+</p>
+<p>
+<%= link_to 'Edit this Badge', edit_badge_path(@badge), class: "btn btn-primary" %>
+<%= link_to 'Create a new version of this Badge', new_version_badge_path(@badge), class: "btn btn-primary" %>
+<%= link_to 'Delete this Badge', @badge, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %>
 </p>
 
 <p>
@@ -23,8 +23,8 @@
       <tr>
         <th>Subject</th>
         <th>Code</th>
+        <th>Standard</th>
         <th>Benchmark</th>
-        <th>Example</th>
       </tr>
     </thead>
 
@@ -33,8 +33,8 @@
         <tr>
           <td><%= standard.subject.name %></td>
           <td><%= standard.code %></td>
+          <td class='small'><%= standard.standard %></td>
           <td class='small'><%= standard.benchmark %></td>
-          <td class='small'><%= standard.example %></td>
         </tr>
       <% end %>
     </tbody>

@@ -2,6 +2,10 @@
 
 <h1>Students</h1>
 
+<p>
+<%= link_to 'Add New Student', new_student_path, class: "btn btn-primary" %>
+</p>
+
 <table id='students_index_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
   <thead>
     <tr>
@@ -20,7 +24,7 @@
         <td><%= student.student_id %></td>
         <td><%= link_to 'Show', student, class: "btn btn-primary btn-xs" %>
             <%= link_to 'Edit', edit_student_path(student), class: "btn btn-primary btn-xs" %>
-            <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %></td>
+            <%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,7 +32,6 @@
 
 <br>
 
-<%= link_to 'New Student', new_student_path %>
 
 <script type="text/javascript">
 $(document).ready(function(){
