@@ -43,9 +43,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $('#standards_show_table').DataTable({
-    stateSave: true,
-    "pageLength": 15,
-    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
+    "paging":   false,
     "order": [[ 0, "asc" ], [1, "asc"]],
     "columnDefs": [
       { "targets": [2,3], "orderable": false},
