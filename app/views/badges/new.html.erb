@@ -1,7 +1,3 @@
 <h1>New Badge</h1>
 
-<%= render 'form', badge: @badge %>
-
-<p>
-<%= link_to 'Cancel', badges_path, class: "btn btn-warning" %>
-</p>
+<%= render 'form', badge: @badge, cancel_link: badges_path %>

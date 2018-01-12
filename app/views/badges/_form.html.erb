@@ -1,6 +1,6 @@
 <%= form_with(model: badge, local: true) do |form| %>
   <% if badge.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert-danger">
       <h2><%= pluralize(badge.errors.count, "error") %> prohibited this badge from being saved:</h2>
 
       <ul>
@@ -66,6 +66,7 @@
 
   <div class="actions">
     <%= form.submit id: 'btn-submit', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', cancel_link, class: 'btn btn-warning' %>
   </div>
 <% end %>
 

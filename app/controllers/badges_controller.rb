@@ -44,6 +44,7 @@ class BadgesController < ApplicationController
         format.html { redirect_to @badge, notice: 'Badge was successfully created.' }
         format.json { render :show, status: :created, location: @badge }
       else
+        @standard_ids = []
         format.html { render :new }
         format.json { render json: @badge.errors, status: :unprocessable_entity }
       end
@@ -58,6 +59,7 @@ class BadgesController < ApplicationController
         format.html { redirect_to @badge, notice: 'Badge was successfully updated.' }
         format.json { render :show, status: :ok, location: @badge }
       else
+        @standard_ids = @badge.standards.pluck(:id)
         format.html { render :edit }
         format.json { render json: @badge.errors, status: :unprocessable_entity }
       end
