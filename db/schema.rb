@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111210708) do
+ActiveRecord::Schema.define(version: 20180112162324) do
 
   create_table "badge_standards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "badge_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180111210708) do
 
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.decimal "credits", precision: 10
   end
 
   create_table "user_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

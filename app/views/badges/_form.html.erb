@@ -22,50 +22,46 @@
     <%= form.hidden_field :version %>
   </p>
 
-<!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
-  <% first = Subject.first.id %>
-  <% Subject.find_each do |subject| %>
-  <li class="nav-item">
-    <a class="nav-link <%= 'active' if subject.id == first %>" data-toggle="tab" href="#<%= "tab-#{subject.id}" %>"><%= subject.name %></a>
-  </li>
-  <% end %>
-</ul>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <% first = Subject.first.id %>
+    <% Subject.find_each do |subject| %>
+    <li class="nav-item">
+      <a class="nav-link <%= 'active' if subject.id == first %>" data-toggle="tab" href="#<%= "tab-#{subject.id}" %>"><%= subject.name %></a>
+    </li>
+    <% end %>
+  </ul>
 
-<!-- Tab panes -->
-<div class="tab-content">
-  <% first = Subject.first.id %>
-  <% Subject.find_each.with_index do |subject, i| %>
-    <div class="tab-pane container <%= subject.id == first ? 'active' : 'fade' %>" id="<%= "tab-#{subject.id}" %>">
-    <table id='<%= "table_#{i}" %>' class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
-      <thead>
-        <tr>
-          <th>Select</th>
-          <th>Subject</th>
-          <th>Code</th>
-          <th>Standard</th>
-          <th>Benchmark</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% subject.standards.each do |standard| %>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <% first = Subject.first.id %>
+    <% Subject.find_each.with_index do |subject, i| %>
+      <div class="tab-pane container <%= subject.id == first ? 'active' : 'fade' %>" id="<%= "tab-#{subject.id}" %>">
+      <table id='<%= "table_#{i}" %>' class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
+        <thead>
           <tr>
-            <td><%= check_box_tag "badge[standard_ids][]", standard.id, @standard_ids.include?(standard.id) %></td>
-            <td><%= standard.subject.name %></td>
-            <td><%= standard.code %></td>
-            <td class="small"><%= standard.standard %></td>
-            <td class="small"><%= standard.benchmark %></td>
+            <th>Select</th>
+            <th>Subject</th>
+            <th>Code</th>
+            <th>Standard</th>
+            <th>Benchmark</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
-  <% end %>
-</div>
+        </thead>
 
-  <div>
-
+        <tbody>
+          <% subject.standards.each do |standard| %>
+            <tr>
+              <td><%= check_box_tag "badge[standard_ids][]", standard.id, @standard_ids.include?(standard.id) %></td>
+              <td><%= standard.subject.name %></td>
+              <td><%= standard.code %></td>
+              <td class="small"><%= standard.standard %></td>
+              <td class="small"><%= standard.benchmark %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">
