@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180112162324) do
 
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.decimal "credits", precision: 10
+    t.decimal "credits", precision: 6, scale: 3
   end
 
   create_table "user_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -12,6 +12,29 @@
 <%= link_to 'Delete', @student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %>
 </p>
 
+
+
+<h3>Credits Earned:</h3>
+<p>
+  <table id='credit_show_table' class='cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Credits</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @student.credits.each do |subject| %>
+        <tr>
+          <td><%= subject[:subject] %></td>
+          <td><%= subject[:credits] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
 <h3>Badges Earned:</h3>
 <p>
   <table id='badge_show_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
