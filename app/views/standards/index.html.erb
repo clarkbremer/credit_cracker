@@ -1,44 +1,41 @@
 <h1>Standards</h1>
 
-<table id='standards_index_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Code</th>
-      <th>Standard</th>
-      <th>Benchmark</th>
-      <th class="w-25"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @standards.each do |standard| %>
-      <tr>
-        <td><%= standard.subject.name %></td>
-        <td><%= standard.code %></td>
-        <td class='small'><%= standard.standard %></td>
-        <td class='small'><%= standard.benchmark %></td>
-        <td><%= link_to 'Show', standard, class: "btn btn-primary btn-xs" %></td>
-      </tr>
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <% first = Subject.order(:name).first.id %>
+    <% Subject.order(:name).each do |subject| %>
+    <li class="nav-item">
+      <a class="nav-link <%= 'active' if subject.id == first %>" data-toggle="tab" href="#<%= "tab-#{subject.id}" %>"><%= subject.name %></a>
+    </li>
     <% end %>
-  </tbody>
-</table>
+  </ul>
 
+  <div class="tab-content">
+    <% first = Subject.order(:name).first.id %>
+    <% Subject.order(:name).each do |subject| %>
+      <div class="tab-pane container <%= subject.id == first ? 'active' : 'fade' %>" id="<%= "tab-#{subject.id}" %>">
+      <table class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Code</th>
+            <th>Standard</th>
+            <th>Benchmark</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% subject.standards.each do |standard| %>
+            <tr>
+              <td><%= standard.subject.name %></td>
+              <td><%= standard.code %></td>
+              <td class="small"><%= standard.standard %></td>
+              <td class="small"><%= standard.benchmark %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    <% end %>
+  </div>
 <br>
-
-<%= link_to 'Add New Standard', new_standard_path, class: "glyphicon glyphicon-plus" %>
-
-<script type="text/javascript">
-$(document).ready(function(){
-  $('#standards_index_table').DataTable({
-    stateSave: true,
-    "pageLength": 15,
-    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
-    "order": [[ 0, "asc" ], [1, "asc"]],
-    "columnDefs": [
-      { "targets": [2,3,4], "orderable": false},
-      { "targets": [1], "orderData": [0,1]}
-    ]
-  });
-});
-</script>

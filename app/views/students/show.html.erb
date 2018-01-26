@@ -28,7 +28,7 @@
       <% @student.credits.each do |subject| %>
         <tr>
           <td><%= subject[:subject] %></td>
-          <td><%= subject[:credits] %></td>
+          <td><%= subject[:credits].round(3) %></td>
         </tr>
       <% end %>
     </tbody>

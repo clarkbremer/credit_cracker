@@ -23,9 +23,9 @@
   </p>
 
   <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <% first = Subject.first.id %>
-    <% Subject.find_each do |subject| %>
+  <ul class="nav nav-pills" role="tablist">
+    <% first = Subject.order(:name).first.id %>
+    <% Subject.order(:name).each do |subject| %>
     <li class="nav-item">
       <a class="nav-link <%= 'active' if subject.id == first %>" data-toggle="tab" href="#<%= "tab-#{subject.id}" %>"><%= subject.name %></a>
     </li>
@@ -34,8 +34,8 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <% first = Subject.first.id %>
-    <% Subject.find_each.with_index do |subject, i| %>
+    <% first = Subject.order(:name).first.id %>
+    <% Subject.order(:name).each.with_index do |subject, i| %>
       <div class="tab-pane container <%= subject.id == first ? 'active' : 'fade' %>" id="<%= "tab-#{subject.id}" %>">
       <table id='<%= "table_#{i}" %>' class='dtable cell-border table table-bordered' cellspacing='0' width='100%'>
         <thead>

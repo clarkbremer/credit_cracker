@@ -19,5 +19,10 @@ Subject.where(id: 8).first_or_create(credits: 1.0, name: 'Chemistry')
 Subject.where(id: 9).first_or_create(credits: 1.0, name: 'Physics')
 Subject.where(id: 10).first_or_create(credits: 4.0, name: 'English')
 Subject.where(id: 11).first_or_create(credits: 1.0, name: 'Biology')
+Subject.where(id: 12).first_or_create(credits: 1.0, name: 'Visual Arts')
+Subject.where(id: 13).first_or_create(credits: 1.0, name: 'Media Arts')
+Subject.where(id: 14).first_or_create(credits: 3.0, name: 'Music')
+Subject.where(id: 15).first_or_create(credits: 1.0, name: 'Theater')
+Subject.where(id: 16).first_or_create(credits: 0.5, name: 'Dance')
 
 Subject.find_each {|subject| subject.import }

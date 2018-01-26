@@ -5,7 +5,7 @@ class Student < ApplicationRecord
 
   def credits
     credit_report = []
-    Subject.find_each do |subject|
+    Subject.order(:name).each do |subject|
       subject_standards = standards.where(subject_id: subject.id).uniq.count
       fraction = subject_standards.to_f / subject.standards.count
       credit_report << {subject: subject.name, credits: fraction * subject.credits}
