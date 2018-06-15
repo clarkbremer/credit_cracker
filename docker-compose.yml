@@ -7,9 +7,6 @@ services:
       - .env.app
     volumes:
       - .:/home/app/webapp
-    environment:
-      RAILS_ENV: development
-      PASSENGER_APP_ENV: development
     ports:
       - "3000:80"
     depends_on:
