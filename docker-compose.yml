@@ -4,7 +4,7 @@ services:
     build:
       context: .
     env_file:
-      - .env.docker
+      - .env.app
     volumes:
       - .:/home/app/webapp
     environment:
@@ -19,8 +19,8 @@ services:
 
   mysql:
     image: mysql:5.7.19
-    environment:
-      - MYSQL_ROOT_PASSWORD=chiselmetimbers
+    env_file:
+      - .env.mysql
     volumes:
       - "./db/initdb.d:/docker-entrypoint-initdb.d"
       - "./db/conf.d:/etc/mysql/conf.d"
