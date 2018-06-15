@@ -44,6 +44,7 @@ GEM
     autoprefixer-rails (7.2.4)
       execjs
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x64-mingw32)
     bindex (0.5.0)
     bootstrap (4.0.0.beta3)
       autoprefixer-rails (>= 6.0.3)
@@ -82,6 +83,7 @@ GEM
     erubi (1.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    ffi (1.9.18-x64-mingw32)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.1)
@@ -109,8 +111,11 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.2)
     mysql2 (0.4.10)
+    mysql2 (0.4.10-x64-mingw32)
     nio4r (2.2.0)
     nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.1-x64-mingw32)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     popper_js (1.12.9)
@@ -184,6 +189,8 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2017.3)
+      tzinfo (>= 1.0.0)
     uglifier (4.1.0)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
@@ -201,6 +208,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   bootstrap
