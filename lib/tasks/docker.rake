@@ -14,14 +14,18 @@ namespace :docker do
     "creditcracker:#{get_rev}"
   end
 
+  def tag
+    "#{repo}/#{get_build_tag}"
+  end
+
   desc 'build docker container'
   task :build do
-    sh "docker build -t #{get_build_tag} ."
+    sh "docker build -t #{tag} ."
   end
 
   desc 'push docker container'
   task :push do
-    sh "docker push #{repo}/#{get_build_tag}"
+    sh "docker push #{tag}"
   end
 
   desc 'build, tag, and push docker container'
