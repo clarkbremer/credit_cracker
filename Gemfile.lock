@@ -84,6 +84,7 @@ GEM
     execjs (2.7.0)
     ffi (1.9.18)
     ffi (1.9.18-x64-mingw32)
+    git (1.4.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.1)
@@ -222,6 +223,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  git
   jbuilder (~> 2.5)
   jquery-datatables
   jquery-rails

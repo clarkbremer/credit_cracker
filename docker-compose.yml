@@ -8,11 +8,11 @@ services:
     volumes:
       - .:/home/app/webapp
     ports:
-      - "3000:80"
+      - "3000:3000"
     depends_on:
       - mysql
     command:
-      - rails s -p 80 -b 0.0.0.0
+      - rails s
 
   mysql:
     image: mysql:5.7.19
