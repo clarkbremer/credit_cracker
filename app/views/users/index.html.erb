@@ -1,0 +1,46 @@
+<h1>Users</h1>
+
+<p>
+  <%= link_to 'Create New User', new_user_path, class: "btn btn-primary" %>
+</p>
+
+<table id='user_index_table' class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Roles</th>
+      <th class="w-25"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <%= user.roles.pluck(:name).join(', ') %>
+        </td>
+        <td>
+          <%= link_to 'Show/Edit', edit_user_path(user), class: "btn btn-primary btn-xs" %>
+          <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#user_index_table').DataTable({
+    "pageLength": 15,
+    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
+    "order": [[ 0, "asc" ],[1, "asc"]],
+    "columnDefs": [
+      { "targets": [1], "orderable": false}
+    ]
+  });
+});
+
+</script>
