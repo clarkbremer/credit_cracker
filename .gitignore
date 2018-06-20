@@ -24,3 +24,4 @@
 
 .env*
 *.production
+docker-compose.override.yml

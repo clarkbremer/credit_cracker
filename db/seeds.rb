@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Role.where(id: 1).first_or_create(name: 'admin')
 Role.where(id: 2).first_or_create(name: 'student')
+Role.where(id: 3).first_or_create(name: 'teacher')
 
 Subject.where(id: 1).first_or_create(credits: 0.5, name: 'Citizenship')
 Subject.where(id: 2).first_or_create(credits: 0.5, name: 'Economics')
